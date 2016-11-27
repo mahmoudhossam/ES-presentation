@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Introduction to Elasticsearch</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+
+				<section>
+					<h2>Introduction to Elasticsearch</h2>
+					<img data-src="img/elasticsearch.jpg">
+				</section>
+
+				<section>
+					<h2>Outline</h2>
+					<ul>
+						<li>What is Elasticsearch?</li>
+						<li>Why Elasticsearch?</li>
+						<li>How to use Elasticsearch</li>
+						<li>Elasticsearch basics</li>
+						<li>How to get data into Elasticsearch</li>
+						<li>Deeper look into search</li>
+						<li>Useful features</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>What is Elasticsearch</h2>
+					<p class="fragment fade-in">From <a href="https://en.wikipedia.org/wiki/Elasticsearch">Wikipedia</a>:</p>
+					<ul>
+						<li class="fragment fade-in">Elasticsearch is a search engine based on Lucene.</li>
+						<li class="fragment fade-in">It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents.</li>
+						<li class="fragment fade-in">It is developed in Java and is released as open source under the terms of the Apache License.</li>
+						<li class="fragment fade-in">It is the most popular enterprise search engine followed by Apache Solr, also based on Lucene.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Why Elasticsearch?</h2>
+						<section>
+							<h3>Larger community</h3>
+							<ul>
+								<li>Facebook</li>
+								<li>GitHub</li>
+								<li>Quora</li>
+								<li>SoundCloud</li>
+								<li>Wikimedia</li>
+								<li>Stack Exchange</li>
+								<li>Netflix</li>
+							</ul>
+							<p>And others use Elasticsearch</p>
+						</section>
+						<section>
+								<h3>Scaling built-in</h3>
+								<p>Elasticsearch automatically shards your data and supports node auto-discovery for scaling to multiple nodes</p>
+						</section>
+						<section>
+							<h3>Schemaless</h3>
+							<p>No need to declare types before indexing, Elasticsearch infers them from data.</p>
+						</section>
+				</section>
+
+				<section>
+					<h2>How to use Elasticsearch</h2>
+					<p>Elasticsearch provides an easy to use REST API</p>
+					<p>A query like this:<p>
+					<pre><code data-trim data-noescape>
+					GET /_count
+{
+    "query": {
+        "match_all": {}
+    }
+}
+					</code></pre>
+					<p class="fragment fade-in" data-fragment-index="1">Returns a result like that</p>
+					<pre class="fragment fade-in" data-fragment-index="1"><code data-trim data-noescape>
+{
+    "count" : 0,
+    "_shards" : {
+        "total" : 5,
+        "successful" : 5,
+        "failed" : 0
+    }
+}
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Elasticsearch basics</h2>
+						<section>
+							<h3>Node</h3>
+							<p>A node is a running instance of elasticsearch.</p>
+						</section>
+						<section>
+							<h3>Cluster</h3>
+							<p>A cluster consists of one or more nodes sharing data and workload.</p>
+						</section>
+						<section>
+							<h3>Index</h3>
+							<p>An index is a place to store related data.</p>
+						</section>
+						<section>
+							<h3>Document</h3>
+							<p>A document is a mapping between keys (called fields) and values represented by a JSON object.
+							It typically looks like this:</p>
+							<pre><code data-trim data-noescape>
+{
+    "email":      "john@smith.com",
+    "first_name": "John",
+    "last_name":  "Smith",
+    "info": {
+        "bio":         "Eco-warrior and defender of the weak",
+        "age":         25,
+        "interests": [ "dolphins", "whales" ]
+    },
+    "join_date": "2014/05/01"
+}
+							</code></pre>
+						</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="js/reveal.js"></script>
+		<script src="lib/js/head.min.js"></script>
+
+		<script>
+			Reveal.initialize({'mouseWheel': true,
+			'dependencies': [
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+			]
+			});
+		</script>
+
+	</body>
+</html>
